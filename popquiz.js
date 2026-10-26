@@ -1,24 +1,24 @@
 "use strict";
 const qa =  [
         {
-            question: "What is the largest land animal?",
-            answer: "Elephant"
+            question: "What is Coco's favorite color?",
+            answer: "Pink"
         },
         {
-            question: "Which animal is known as the king of the jungle?",
-            answer: "Lion"
+            question: "How many siblings does Coco have?",
+            answer: "2"
         },
         {
-            question: "What mammal can fly?",
-            answer: "Bat"
+            question: "What is Coco's dream job?",
+            answer: "Pop Star"
         },
         {
-            question: "Which animal is famous for its black and white stripes?",
-            answer: "Zebra"
+            question: "Where is Coco's mom from?",
+            answer: "Iceland"
         },
         {
-            question: "What is the fastest land animal?",
-            answer: "Cheetah"
+            question: "Where did Coco grow up?",
+            answer: "New York City"
         }
     ];//array of objects
 
