@@ -1,83 +1,106 @@
-"use strict";
-const qa =  [
-        {
-            question: "What is Coco's favorite color?",
-            answer: "Pink"
-        },
-        {
-            question: "How many siblings does Coco have?",
-            answer: "2"
-        },
-        {
-            question: "What is Coco's dream job?",
-            answer: "Pop Star"
-        },
-        {
-            question: "Where is Coco's mom from?",
-            answer: "Iceland"
-        },
-        {
-            question: "Where did Coco grow up?",
-            answer: "New York City"
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UIkit</title>
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.24.2/dist/css/uikit.min.css" />
+
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.24.2/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.24.2/dist/js/uikit-icons.min.js"></script>
+
+    <style>
+        main {
+            background-color: tomato;
         }
-    ];//array of objects
+        nav{
+            background-color: lightgray;
+        }
+    </style>
+</head>
 
-/*
-An Object is a variable that can hold many variables.
+<body>
 
-Objects are collections of key-value pairs, where each key (known as property names) has a value.
+    <header class="uk-container">
+        <!-- https://getuikit.com/docs/nav -->
+        <nav class="uk-container uk-container-small" uk-dropnav >
+            <ul class="uk-subnav">
+                <li class="uk-active"><a href="#">Active</a></li>
+                <li>
+                    <a href>Parent <span uk-drop-parent-icon></span></a>
+                    <div class="uk-dropdown">
+                        <ul class="uk-nav uk-dropdown-nav">
+                            <li class="uk-active"><a href="#">Active</a></li>
+                            <li><a href="#">Item</a></li>
+                            <li><a href="#">Item</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a href>Parent <span uk-drop-parent-icon></span></a>
+                    <div class="uk-dropdown">
+                        <ul class="uk-nav uk-dropdown-nav">
+                            <li class="uk-active"><a href="#">Active</a></li>
+                            <li><a href="#">Item</a></li>
+                            <li><a href="#">Item</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="#">Item</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="uk-container">
+        <!-- https://getuikit.com/docs/container -->
+        <div class="uk-container uk-container-xsmall">
+            <!-- https://getuikit.com/docs/accordion -->
+            <ul uk-accordion>
 
-Objects can describe anything like houses, cars, people, animals, or any other subjects.
+                <li class="uk-open">
+                    <a class="uk-accordion-title" href>Item 1</a>
+                    <div class="uk-accordion-content">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua.</p>
+                    </div>
+                </li>
+                <li>
+                    <a class="uk-accordion-title" href>Item 2</a>
+                    <div class="uk-accordion-content">
+                        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                            commodo
+                            consequat. Duis aute irure dolor reprehenderit.</p>
+                    </div>
+                </li>
+                <li>
+                    <a class="uk-accordion-title" href>Item 3</a>
+                    <div class="uk-accordion-content">
+                        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                            pariatur. Excepteur sint occaecat cupidatat proident.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
 
-*/
+        <hr>
 
-let currentQuestion = 0;
-let selectedAnswer;
+        <!-- https://getuikit.com/docs/card -->
+        <div class="uk-card uk-card-overlay uk-card-body uk-width-1-2@m">
+            <h3 class="uk-card-title">Default</h3>
+            <p>Lorem ipsum <a href="#">dolor</a> sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                ut labore et dolore magna aliqua.</p>
+        </div>
 
-let questionPop = getQuestion();
-console.log(questionPop);
-console.log(qa.length);
+        <hr>
+        <!-- https://getuikit.com/docs/lightbox -->
+        <div uk-lightbox="animation: fade">
+            <a class="uk-button uk-button-default" href="../images/narwhal.jpg" data-alt="narhwal" data-caption="This is a narwhal">Open Lightbox</a>
+        </div>
+    </main>
+    <footer></footer>
 
+</body>
 
-//console.log(qa[0].question);
-document.getElementById("question").innerHTML = questionPop.question;
-
-document.getElementById("submit").addEventListener("click", function() {
-     const selected = document.querySelector('input[name="option"]:checked');
-     console.log(selected.value);
-     if(selected.value == questionPop.answer){
-        document.getElementById("result").innerHTML = "Correct!";
-     } else {
-        document.getElementById("result").innerHTML = "Incorrect. The correct answer is " + qa[currentQuestion].answer + ".";
-     }
-     nextQuestion();
-     setTimeout(()=>{
-         document.getElementById("result").innerHTML = "";
-        }, 3000);
-
-});
-
-
-
-function nextQuestion() {
-    questionPop = getQuestion();
-    if(questionPop != null) {
-        document.getElementById("question").innerHTML = questionPop.question;
-    } else {
-        document.getElementById("question").innerHTML = "Quiz Complete!";
-        document.getElementById("submit").style.display = "none";
-        document.getElementById("result").innerHTML = "You have completed the quiz.";
-        document.getElementById("optionsForm").style.display = "none";
-    }
-
-}
-
-function getQuestion() {
-    if(qa.length > 0){
-        let popQuestion = qa.pop();
-        console.log(popQuestion);
-        return popQuestion;
-    }else{
-        return null;
-    }
-    
+</html>
