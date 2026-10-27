@@ -1,106 +1,147 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UIkit</title>
-    <!-- UIkit CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.24.2/dist/css/uikit.min.css" />
+    <title>Coco Quiz</title>
 
-    <!-- UIkit JS -->
-    <script src="https://cdn.jsdelivr.net/npm/uikit@3.24.2/dist/js/uikit.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/uikit@3.24.2/dist/js/uikit-icons.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.24.2/dist/css/uikit.min.css">
 
     <style>
-        main {
-            background-color: tomato;
+        body {
+            background-color: lightpink;
         }
-        nav{
-            background-color: lightgray;
+
+        #quiz-container {
+            background-color: white;
+            padding: 30px;
+            margin-top: 50px;
+        }
+
+        h1 {
+            color: deeppink;
+        }
+
+        label {
+            display: block;
+            margin: 12px 0;
         }
     </style>
 </head>
 
 <body>
 
-    <header class="uk-container">
-        <!-- https://getuikit.com/docs/nav -->
-        <nav class="uk-container uk-container-small" uk-dropnav >
-            <ul class="uk-subnav">
-                <li class="uk-active"><a href="#">Active</a></li>
-                <li>
-                    <a href>Parent <span uk-drop-parent-icon></span></a>
-                    <div class="uk-dropdown">
-                        <ul class="uk-nav uk-dropdown-nav">
-                            <li class="uk-active"><a href="#">Active</a></li>
-                            <li><a href="#">Item</a></li>
-                            <li><a href="#">Item</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li>
-                    <a href>Parent <span uk-drop-parent-icon></span></a>
-                    <div class="uk-dropdown">
-                        <ul class="uk-nav uk-dropdown-nav">
-                            <li class="uk-active"><a href="#">Active</a></li>
-                            <li><a href="#">Item</a></li>
-                            <li><a href="#">Item</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li><a href="#">Item</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main class="uk-container">
-        <!-- https://getuikit.com/docs/container -->
-        <div class="uk-container uk-container-xsmall">
-            <!-- https://getuikit.com/docs/accordion -->
-            <ul uk-accordion>
+    <div id="quiz-container" class="uk-container uk-container-small uk-card uk-card-default uk-card-body">
 
-                <li class="uk-open">
-                    <a class="uk-accordion-title" href>Item 1</a>
-                    <div class="uk-accordion-content">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua.</p>
-                    </div>
-                </li>
-                <li>
-                    <a class="uk-accordion-title" href>Item 2</a>
-                    <div class="uk-accordion-content">
-                        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                            commodo
-                            consequat. Duis aute irure dolor reprehenderit.</p>
-                    </div>
-                </li>
-                <li>
-                    <a class="uk-accordion-title" href>Item 3</a>
-                    <div class="uk-accordion-content">
-                        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                            pariatur. Excepteur sint occaecat cupidatat proident.</p>
-                    </div>
-                </li>
-            </ul>
-        </div>
+        <h1>How Well Do You Know Coco?</h1>
 
-        <hr>
+        <div id="question"></div>
 
-        <!-- https://getuikit.com/docs/card -->
-        <div class="uk-card uk-card-overlay uk-card-body uk-width-1-2@m">
-            <h3 class="uk-card-title">Default</h3>
-            <p>Lorem ipsum <a href="#">dolor</a> sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                ut labore et dolore magna aliqua.</p>
-        </div>
+        <form id="optionsForm">
+            <label>
+                <input class="uk-radio" type="radio" name="option" value="Pink">
+                Pink
+            </label>
 
-        <hr>
-        <!-- https://getuikit.com/docs/lightbox -->
-        <div uk-lightbox="animation: fade">
-            <a class="uk-button uk-button-default" href="../images/narwhal.jpg" data-alt="narhwal" data-caption="This is a narwhal">Open Lightbox</a>
-        </div>
-    </main>
-    <footer></footer>
+            <label>
+                <input class="uk-radio" type="radio" name="option" value="Blue">
+                Blue
+            </label>
+
+            <label>
+                <input class="uk-radio" type="radio" name="option" value="Green">
+                Green
+            </label>
+
+            <label>
+                <input class="uk-radio" type="radio" name="option" value="Purple">
+                Purple
+            </label>
+        </form>
+
+        <button id="submit" class="uk-button uk-button-primary">Submit</button>
+
+        <div id="result"></div>
+
+    </div>
+
+    <script>
+        var questions = [
+            {
+                question: "What is Coco's favorite color?",
+                options: ["Pink", "Blue", "Green", "Purple"],
+                answer: "Pink"
+            },
+            {
+                question: "Where did Coco grow up?",
+                options: ["Miami", "Denver", "New York City", "Los Angeles"],
+                answer: "New York City"
+            },
+            {
+                question: "How many siblings does Coco have?",
+                options: ["0", "1", "2", "3"],
+                answer: "1"
+            },
+            {
+                question: "What is Coco's dog's name?",
+                options: ["Bella", "Chickadee", "Luna", "Daisy"],
+                answer: "Chickadee"
+            },
+            {
+                question: "Where did Coco study abroad?",
+                options: ["London", "Rome", "Paris", "Madrid"],
+                answer: "Paris"
+            }
+        ];
+
+        var currentQuestion = 0;
+        var score = 0;
+
+        function showQuestion() {
+            document.getElementById("question").innerHTML =
+                "<h3>" + questions[currentQuestion].question + "</h3>";
+
+            var answers = "";
+
+            for (var i = 0; i < questions[currentQuestion].options.length; i++) {
+                answers += "<label><input class='uk-radio' type='radio' name='option' value='" +
+                    questions[currentQuestion].options[i] + "'> " +
+                    questions[currentQuestion].options[i] + "</label>";
+            }
+
+            document.getElementById("optionsForm").innerHTML = answers;
+        }
+
+        document.getElementById("submit").onclick = function() {
+            var selected = document.querySelector("input[name='option']:checked");
+
+            if (selected == null) {
+                document.getElementById("result").innerHTML = "Pick an answer!";
+                return;
+            }
+
+            if (selected.value == questions[currentQuestion].answer) {
+                score++;
+            }
+
+            currentQuestion++;
+
+            if (currentQuestion < questions.length) {
+                showQuestion();
+                document.getElementById("result").innerHTML = "";
+            } else {
+                document.getElementById("question").innerHTML =
+                    "<h3>You got " + score + " out of " + questions.length + " correct!</h3>";
+
+                document.getElementById("optionsForm").innerHTML = "";
+                document.getElementById("submit").style.display = "none";
+                document.getElementById("result").innerHTML = "Thanks for playing!";
+            }
+        };
+
+        showQuestion();
+    </script>
 
 </body>
-
 </html>
